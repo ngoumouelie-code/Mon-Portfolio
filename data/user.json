@@ -1,0 +1,54 @@
+{
+  "name": "Ngono Ngoumou Elie Jordan",
+  "initials": "NNEJ",
+  "role": "Ingénieur Logiciel",
+  "specialty": "Développement Web/Mobile, Backend, Cloud, Sécurité, etc.",
+  "tagline": "Créateur de solutions numériques innovantes",
+  "bio": "Ingénieur logiciel passionné par la création de produits web performants et intuitifs.",
+  "location": "Garoua, Cameroun",
+  "availability": "Disponible pour CDI, freelance, stage, alternance...",
+  "avatarUrl": "assets/photo.jpg",
+  "resumeUrl": "",
+  "githubUsername": "ngoumouelie-code",
+  "portfolioTopic": "portfolio",
+  "liveGithubSync": false,
+  "links": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/ngoumouelie-code"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/elie-ngoumou-01962a404"
+    },
+    {
+      "label": "Email",
+      "url": "mailto:ngoumouelie@gmail.com"
+    },
+    {
+      "label": "Whatsapp",
+      "url": "https://wa.me/237690557325"
+    }
+  ],
+  "skills": [
+    {
+      "category": "Langages",
+      "items": ["JavaScript", "Python", "SQL", "Java", "React", "React Native", "Node.js", "Express", "Docker"]
+    },
+    {
+      "category": "Outils",
+      "items": ["Git", "Docker", "GitHub Actions"]
+    },
+    {
+      "category": "Systemes",
+      "items": ["Windows/ Windows Server", "Linux(Ubuntu/ Ubuntu Server, Kali, Mint)"]
+    }
+  ],
+"experience": [
+    {
+      "period": "2025 - Juin",
+      "title": "Role ou formation",
+      "description": "Impact, responsabilites et technologies."
+    }
+  ]
+}

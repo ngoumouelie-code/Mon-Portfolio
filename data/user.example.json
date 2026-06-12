@@ -1,0 +1,48 @@
+{
+  "_comment": "Copie ce fichier vers data/user.json puis remplace les valeurs. Les champs _comment peuvent etre supprimes.",
+  "name": "Ton nom complet",
+  "initials": "TN",
+  "role": "Ingenieur logiciel",
+  "specialty": "Backend, data, IA, cloud, securite, etc.",
+  "tagline": "Phrase courte qui explique ta valeur professionnelle.",
+  "bio": "Paragraphe de presentation. Garde-le concret et oriente resultats.",
+  "location": "Ville, Pays",
+  "availability": "Disponible pour CDI, freelance, stage, alternance...",
+  "avatarUrl": "assets/photo.jpg ou URL d'une image",
+  "resumeUrl": "assets/cv.pdf ou URL de ton CV",
+  "githubUsername": "ton-utilisateur-github",
+  "portfolioTopic": "portfolio",
+  "liveGithubSync": false,
+  "_liveGithubSyncComment": "Laisse false pour utiliser data/projects.json genere par GitHub Actions. Mets true seulement pour tester un chargement direct depuis le navigateur.",
+  "links": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/ton-utilisateur-github"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/ton-profil"
+    },
+    {
+      "label": "Email",
+      "url": "mailto:ton.email@example.com"
+    }
+  ],
+  "skills": [
+    {
+      "category": "Langages",
+      "items": ["JavaScript", "Python", "SQL"]
+    },
+    {
+      "category": "Outils",
+      "items": ["Git", "Docker", "GitHub Actions"]
+    }
+  ],
+  "experience": [
+    {
+      "period": "2025 - Aujourd'hui",
+      "title": "Role ou formation",
+      "description": "Impact, responsabilites et technologies."
+    }
+  ]
+}

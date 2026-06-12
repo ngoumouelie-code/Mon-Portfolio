@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-06-12T15:16:04.105Z",
+  "topic": "portfolio",
+  "projects": [
+    {
+      "id": 1162501131,
+      "name": "Projet-site-web-Resto-le-Fouket-",
+      "description": "Site web de gestion du restaurant le Fouket",
+      "language": null,
+      "stars": 0,
+      "url": "https://github.com/ngoumouelie-code/Projet-site-web-Resto-le-Fouket-",
+      "homepage": "",
+      "topics": [
+        "portfolio"
+      ],
+      "updatedAt": "2026-06-12T15:13:32Z"
+    },
+    {
+      "id": 1262410410,
+      "name": "Task-Master",
+      "description": "TaskMaster est une application mobile Expo/React Native de gestion de tâches, agenda local, catégories, statistiques et rappels.",
+      "language": "TypeScript",
+      "stars": 1,
+      "url": "https://github.com/ngoumouelie-code/Task-Master",
+      "homepage": "",
+      "topics": [
+        "portfolio"
+      ],
+      "updatedAt": "2026-06-12T15:11:29Z"
+    }
+  ]
+}

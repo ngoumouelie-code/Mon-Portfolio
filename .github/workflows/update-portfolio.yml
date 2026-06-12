@@ -1,0 +1,37 @@
+name: Update portfolio data
+
+on:
+  schedule:
+    - cron: "17 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-projects:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Sync GitHub projects
+        run: node scripts/update-projects.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate sitemap
+        run: node scripts/generate-sitemap.js
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+
+      - name: Commit updated data
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update portfolio data"
+          file_pattern: "data/projects.json sitemap.xml"

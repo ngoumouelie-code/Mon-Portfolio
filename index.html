@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f3ea">
+    <title>Portfolio</title>
+    <meta name="description" content="Portfolio professionnel synchronise avec GitHub.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Portfolio">
+    <meta property="og:description" content="Portfolio professionnel synchronise avec GitHub.">
+    <meta property="og:image" content="">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json" id="json-ld">{}</script>
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
+
+    <header class="site-header" data-elevated="false">
+      <a class="brand" href="#" data-bind="user.initials" aria-label="Accueil">--</a>
+      <nav class="site-nav" aria-label="Navigation principale">
+        <a href="#projects">Projets</a>
+        <a href="#skills">Competences</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="Changer le theme" title="Changer le theme">
+        <span aria-hidden="true">◐</span>
+      </button>
+    </header>
+
+    <main id="main">
+      <section class="hero section">
+        <div class="hero-copy reveal">
+          <p class="eyebrow" data-bind="user.role"></p>
+          <h1 data-bind="user.name"></h1>
+          <p class="lead" data-bind="user.tagline"></p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">Voir les projets</a>
+            <a class="button ghost" data-attr="href:user.resumeUrl" href="#" target="_blank" rel="noreferrer">CV</a>
+          </div>
+        </div>
+        <aside class="profile-panel reveal" aria-label="Profil">
+          <img class="avatar" data-attr="src:user.avatarUrl,alt:user.name" src="" alt="">
+          <dl class="signal-list">
+            <div>
+              <dt>Specialite</dt>
+              <dd data-bind="user.specialty"></dd>
+            </div>
+            <div>
+              <dt>Localisation</dt>
+              <dd data-bind="user.location"></dd>
+            </div>
+            <div>
+              <dt>Disponibilite</dt>
+              <dd data-bind="user.availability"></dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+
+      <section class="section intro reveal" id="about">
+        <p data-bind="user.bio"></p>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Travaux selectionnes</p>
+          <h2>Projets GitHub synchronises</h2>
+          <p>Les cartes ci-dessous proviennent de `data/projects.json`, actualise par l'API GitHub.</p>
+        </div>
+        <div class="toolbar reveal">
+          <label class="search-field">
+            <span>Filtrer</span>
+            <input id="project-search" type="search" placeholder="Nom, langage, topic">
+          </label>
+          <select id="language-filter" aria-label="Filtrer par langage">
+            <option value="">Tous les langages</option>
+          </select>
+        </div>
+        <div class="project-grid" id="project-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Stack</p>
+          <h2>Competences</h2>
+        </div>
+        <div class="skill-grid" id="skill-grid"></div>
+      </section>
+
+      <section class="section" id="experience">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Parcours</p>
+          <h2>Experience</h2>
+        </div>
+        <div class="timeline" id="timeline"></div>
+      </section>
+
+      <section class="section contact reveal" id="contact">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Construisons quelque chose de solide.</h2>
+        </div>
+        <div class="contact-links" id="contact-links"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span data-bind="user.name"></span>
+      <span id="footer-year"></span>
+    </footer>
+
+    <script src="js/github-sync.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

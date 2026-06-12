@@ -1,0 +1,15 @@
+{
+  "name": "github-synced-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "sync": "node scripts/update-projects.js",
+    "sitemap": "node scripts/generate-sitemap.js",
+    "build": "node scripts/minify-assets.js && node scripts/generate-sitemap.js",
+    "serve": "npx http-server . -p 4173 -c-1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
