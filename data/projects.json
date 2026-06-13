@@ -1,19 +1,32 @@
 {
-  "generatedAt": "2026-06-12T15:16:04.105Z",
+  "generatedAt": "2026-06-13T06:33:32.979Z",
   "topic": "portfolio",
   "projects": [
+    {
+      "id": 1267545184,
+      "name": "My-Moto",
+      "description": "Projet de modernisation des transport par moto-taxi dans la ville de Garoua",
+      "language": "JavaScript",
+      "stars": 0,
+      "url": "https://github.com/ngoumouelie-code/My-Moto",
+      "homepage": "",
+      "topics": [
+        "portfolio"
+      ],
+      "updatedAt": "2026-06-12T16:32:57Z"
+    },
     {
       "id": 1162501131,
       "name": "Projet-site-web-Resto-le-Fouket-",
       "description": "Site web de gestion du restaurant le Fouket",
       "language": null,
-      "stars": 0,
+      "stars": 1,
       "url": "https://github.com/ngoumouelie-code/Projet-site-web-Resto-le-Fouket-",
       "homepage": "",
       "topics": [
         "portfolio"
       ],
-      "updatedAt": "2026-06-12T15:13:32Z"
+      "updatedAt": "2026-06-12T15:21:24Z"
     },
     {
       "id": 1262410410,
