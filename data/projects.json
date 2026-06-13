@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-12T16:36:36.208Z",
+  "generatedAt": "2026-06-13T06:33:32.979Z",
   "topic": "portfolio",
   "projects": [
     {
@@ -31,7 +31,7 @@
     {
       "id": 1262410410,
       "name": "Task-Master",
-      "description": "TaskMaster est une application mobile Expo/React Native de gestion de tâches, agenda local, catégories, statistiques et rappels.",
+      "description": "TaskMaster est une application mobile Expo/React Native de gestion de taches, agenda local, categories, statistiques et rappels.",
       "language": "TypeScript",
       "stars": 1,
       "url": "https://github.com/ngoumouelie-code/Task-Master",

@@ -4,7 +4,7 @@ const path = require("node:path");
 
 async function main() {
   const root = process.cwd();
-  const siteUrl = process.env.SITE_URL || "https://example.com";
+  const siteUrl = process.env.SITE_URL || "https://ngoumouelie-code.github.io/Mon-Portfolio";
   const now = new Date().toISOString();
   const urls = ["/"];
 
