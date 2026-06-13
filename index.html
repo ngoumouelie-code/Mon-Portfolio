@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f7f3ea">
+    <meta name="theme-color" content="#111111">
     <title>Portfolio</title>
     <meta name="description" content="Portfolio professionnel synchronise avec GitHub.">
     <meta property="og:type" content="website">
@@ -32,13 +32,18 @@
 
     <main id="main">
       <section class="hero section">
+        <canvas id="hero-flow" aria-hidden="true"></canvas>
         <div class="hero-copy reveal">
-          <p class="eyebrow" data-bind="user.role"></p>
+          <p class="badge"><span></span><span data-bind="user.role"></span></p>
           <h1 data-bind="user.name"></h1>
           <p class="lead" data-bind="user.tagline"></p>
           <div class="hero-actions">
             <a class="button primary" href="#projects">Voir les projets</a>
             <a class="button ghost" data-attr="href:user.resumeUrl" href="#" target="_blank" rel="noreferrer">CV</a>
+          </div>
+          <div class="term-card" aria-label="Resume technique">
+            <div class="term-bar"><span>portfolio.exe</span><span>_ □ x</span></div>
+            <pre><span class="prompt">$</span> build --profile <span data-bind="user.specialty"></span><br><span class="prompt">></span> status: disponible<br><span class="prompt">></span> location: <span data-bind="user.location"></span></pre>
           </div>
         </div>
         <aside class="profile-panel reveal" aria-label="Profil">
@@ -68,7 +73,7 @@
         <div class="section-heading reveal">
           <p class="eyebrow">Travaux selectionnes</p>
           <h2>Projets GitHub synchronises</h2>
-          <p>Les cartes ci-dessous proviennent de `data/projects.json`, actualise par l'API GitHub.</p>
+          <p>Cartes generees depuis GitHub via `data/projects.json`.</p>
         </div>
         <div class="toolbar reveal">
           <label class="search-field">

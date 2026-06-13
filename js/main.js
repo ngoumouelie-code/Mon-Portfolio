@@ -201,13 +201,74 @@
   function setupTheme() {
     const savedTheme = localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    document.documentElement.dataset.theme = savedTheme || (prefersDark ? "dark" : "light");
+    document.documentElement.dataset.theme = savedTheme || (prefersDark ? "dark" : "dark");
 
     document.querySelector("#theme-toggle").addEventListener("click", () => {
       const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
       document.documentElement.dataset.theme = nextTheme;
       localStorage.setItem("theme", nextTheme);
     });
+  }
+
+  function setupHeroFlow() {
+    const canvas = document.querySelector("#hero-flow");
+    if (!canvas || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const ctx = canvas.getContext("2d");
+    const hero = canvas.parentElement;
+    const colors = ["#9cdef2", "#e06c75", "#5fb6cc"];
+    const particles = [];
+    let width = 0;
+    let height = 0;
+    let tick = 0;
+
+    const noise = (x, y) => {
+      const n = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453;
+      return n - Math.floor(n);
+    };
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = hero.clientWidth;
+      height = hero.clientHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (!particles.length) {
+        for (let i = 0; i < 150; i += 1) {
+          particles.push({ x: Math.random() * width, y: Math.random() * height, life: Math.random(), color: colors[i % colors.length] });
+        }
+      }
+    }
+
+    function draw() {
+      ctx.fillStyle = "rgba(40,44,52,0.08)";
+      ctx.fillRect(0, 0, width, height);
+      particles.forEach((particle) => {
+        const angle = noise(particle.x * 0.006 + tick * 0.001, particle.y * 0.006) * Math.PI * 6;
+        particle.x += Math.cos(angle) * 1.4;
+        particle.y += Math.sin(angle) * 1.4;
+        particle.life -= 0.0015;
+        if (particle.life <= 0 || particle.x < 0 || particle.x > width || particle.y < 0 || particle.y > height) {
+          particle.x = Math.random() * width;
+          particle.y = Math.random() * height;
+          particle.life = 1;
+        }
+        ctx.globalAlpha = particle.life * 0.22;
+        ctx.fillStyle = particle.color;
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, 1.1, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+      tick += 1;
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
+    draw();
   }
 
   function setupHeader() {
@@ -243,6 +304,7 @@
   async function init() {
     setupTheme();
     setupHeader();
+    setupHeroFlow();
     state.user = await fetchJson("data/user.json", {});
     state.projects = await window.PortfolioGithubSync.loadProjects("data/projects.json");
     if (!state.projects.length && state.user.liveGithubSync) {
