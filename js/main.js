@@ -18,6 +18,16 @@
     return path.split(".").reduce((value, key) => value?.[key], source);
   }
 
+  function safeUrl(value) {
+    if (!value) return "";
+    try {
+      const url = new URL(value, window.location.href);
+      return ["http:", "https:", "mailto:", "tel:"].includes(url.protocol) ? url.href : "";
+    } catch (error) {
+      return "";
+    }
+  }
+
   async function fetchJson(path, fallback) {
     try {
       const response = await fetch(path, { cache: "no-store" });
@@ -39,7 +49,8 @@
       element.dataset.attr.split(",").forEach((binding) => {
         const [attribute, path] = binding.split(":");
         const value = getPathValue(state, path);
-        if (value) element.setAttribute(attribute, value);
+        const attributeValue = attribute === "href" || attribute === "src" ? safeUrl(value) : value;
+        if (attributeValue) element.setAttribute(attribute, attributeValue);
       });
     });
 
@@ -101,6 +112,8 @@
     }
 
     projects.forEach((project) => {
+      const projectUrl = safeUrl(project.url);
+      const homepageUrl = safeUrl(project.homepage);
       const card = document.createElement("article");
       card.className = "project-card reveal";
       card.innerHTML = `
@@ -113,8 +126,8 @@
         <p>${escapeHtml(project.description || "Description a renseigner dans GitHub ou data/projects.json.")}</p>
         <div class="tag-list">${(project.topics || []).slice(0, 5).map((topic) => `<span class="tag">${escapeHtml(topic)}</span>`).join("")}</div>
         <div class="card-actions">
-          ${project.url ? `<a class="button ghost" href="${project.url}" target="_blank" rel="noreferrer">Code</a>` : ""}
-          ${project.homepage ? `<a class="button primary" href="${project.homepage}" target="_blank" rel="noreferrer">Demo</a>` : ""}
+          ${projectUrl ? `<a class="button ghost" href="${escapeHtml(projectUrl)}" target="_blank" rel="noreferrer">Code</a>` : ""}
+          ${homepageUrl ? `<a class="button primary" href="${escapeHtml(homepageUrl)}" target="_blank" rel="noreferrer">Demo</a>` : ""}
         </div>
       `;
       selectors.projectGrid.appendChild(card);
@@ -178,11 +191,15 @@
   function renderLinks() {
     selectors.contactLinks.innerHTML = "";
     (state.user.links || []).forEach((link) => {
+      const url = safeUrl(link.url);
+      if (!url) return;
       const anchor = document.createElement("a");
       anchor.className = "button ghost";
-      anchor.href = link.url;
-      anchor.target = "_blank";
-      anchor.rel = "noreferrer";
+      anchor.href = url;
+      if (/^https?:/.test(url)) {
+        anchor.target = "_blank";
+        anchor.rel = "noreferrer";
+      }
       anchor.textContent = link.label;
       selectors.contactLinks.appendChild(anchor);
     });
@@ -199,14 +216,25 @@
   }
 
   function setupTheme() {
-    const savedTheme = localStorage.getItem("theme");
+    let savedTheme = "";
+    try {
+      savedTheme = localStorage.getItem("theme") || "";
+    } catch (error) {
+      console.warn("Theme preference is unavailable.", error);
+    }
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    document.documentElement.dataset.theme = savedTheme || (prefersDark ? "dark" : "dark");
+    document.documentElement.dataset.theme = savedTheme || (prefersDark ? "dark" : "light");
 
-    document.querySelector("#theme-toggle").addEventListener("click", () => {
+    const toggle = document.querySelector("#theme-toggle");
+    if (!toggle) return;
+    toggle.addEventListener("click", () => {
       const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
       document.documentElement.dataset.theme = nextTheme;
-      localStorage.setItem("theme", nextTheme);
+      try {
+        localStorage.setItem("theme", nextTheme);
+      } catch (error) {
+        console.warn("Theme preference could not be saved.", error);
+      }
     });
   }
 
