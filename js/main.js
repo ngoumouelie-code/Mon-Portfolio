@@ -166,9 +166,32 @@
     (state.user.skills || []).forEach((group) => {
       const element = document.createElement("article");
       element.className = "skill-group reveal";
+      const items = (group.items || []).map((item) => {
+        const skill = typeof item === "string" ? { name: item } : item;
+        if (!skill || typeof skill.name !== "string" || !skill.name.trim()) return "";
+
+        const details = [skill.level, skill.status, skill.date]
+          .filter((value) => typeof value === "string" && value.trim())
+          .map((value) => escapeHtml(value.trim()));
+        const proofUrl = safeUrl(skill.proofUrl);
+        const proof = proofUrl
+          ? `<a class="skill-proof" href="${escapeHtml(proofUrl)}" target="_blank" rel="noreferrer">${escapeHtml(skill.proofLabel || "Voir la preuve")}</a>`
+          : "";
+
+        return `
+          <li class="skill-entry">
+            <div class="skill-entry-heading">
+              <strong>${escapeHtml(skill.name.trim())}</strong>
+              ${details.length ? `<span class="skill-details">${details.join(" · ")}</span>` : ""}
+            </div>
+            ${proof}
+          </li>
+        `;
+      }).filter(Boolean);
+
       element.innerHTML = `
         <h3>${escapeHtml(group.category)}</h3>
-        <div class="skill-list">${(group.items || []).map((item) => `<span class="tag">${escapeHtml(item)}</span>`).join("")}</div>
+        <ul class="skill-list">${items.join("")}</ul>
       `;
       selectors.skillGrid.appendChild(element);
     });

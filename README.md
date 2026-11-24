@@ -19,6 +19,28 @@ npm run sync
 npm run serve
 ```
 
+## Mettre a jour les competences
+
+Modifie `skills` dans `data/user.json`, puis recharge le site. Chaque groupe contient une `category` et une liste `items`. Les anciennes competences au format texte restent valides :
+
+```json
+{
+  "category": "Cybersécurité",
+  "items": [
+    {
+      "name": "Linux",
+      "level": "Débutant",
+      "status": "En cours",
+      "date": "Novembre 2026",
+      "proofUrl": "https://exemple.com/mon-laboratoire",
+      "proofLabel": "Voir le laboratoire"
+    }
+  ]
+}
+```
+
+Pour une compétence sans justificatif, `proofUrl` et `proofLabel` peuvent être omis. Tu peux aussi ajouter une certification de la même façon, avec son lien de vérification dans `proofUrl`. N'indique un niveau, un statut ou une preuve que lorsqu'ils correspondent à ton expérience réelle.
+
 ## Configuration GitHub Pages
 
 1. Pousse ce dossier dans un depot GitHub.

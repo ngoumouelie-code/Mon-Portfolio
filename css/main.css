@@ -390,10 +390,50 @@ select {
 }
 
 .skill-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  display: grid;
+  gap: 0.65rem;
   margin-top: 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel2);
+}
+
+.skill-entry-heading {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.skill-entry-heading strong {
+  color: var(--heading);
+  font-size: 0.95rem;
+}
+
+.skill-details {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.skill-proof {
+  color: var(--accent-2);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.skill-proof:hover {
+  color: var(--heading);
 }
 
 .timeline {
